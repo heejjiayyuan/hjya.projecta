@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>何嘉媛 | 视觉设计与插画作品集</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+        /* 基础重置 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: #F7F5F0; 
+            color: #2C3E2D; 
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* 导航栏 */
+        header {
+            padding: 30px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(247, 245, 240, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; }
+        nav { display: flex; gap: 20px; }
+        nav a { text-decoration: none; color: #555; font-size: 14px; transition: color 0.3s; }
+        nav a:hover { color: #1a1a1a; font-weight: 600; }
+
+        /* 首屏简介 */
+        .hero { padding: 10vh 6% 8vh; max-width: 1000px; }
+        .hero h1 { font-family: 'Noto Serif SC', serif; font-size: 3rem; font-weight: 700; margin-bottom: 24px; line-height: 1.3; color: #1A281A;}
+        .hero p { font-size: 1.15rem; color: #666; font-weight: 300; max-width: 650px; }
+
+        /* --- 共有项目排版样式 --- */
+        .project-section { position: relative; padding: 100px 6% 120px; }
+        .project-info { width: 32%; position: sticky; top: 120px; }
+        .project-info h2 { font-family: 'Noto Serif SC', serif; font-size: 2.8rem; line-height: 1.2; margin-bottom: 15px; color: #1A281A; }
+        .project-info h2 span { display: block; font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; margin-top: 8px; font-weight: 400; }
+        .project-info p { font-size: 1.05rem; color: #555; margin-bottom: 30px; }
+        .meta-data { border-top: 1px solid rgba(0,0,0,0.1); padding-top: 20px; font-size: 0.85rem; color: #777; letter-spacing: 1px; line-height: 1.8;}
+
+        .img-wrapper { position: relative; overflow: visible; transition: transform 0.4s ease; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 0 20px 50px rgba(0,0,0,0.06); border-radius: 2px;}
+        .img-wrapper:hover { transform: translateY(-8px); }
+        .caption { position: absolute; font-family: 'Noto Serif SC', serif; font-size: 0.85rem; color: #888; bottom: -28px; right: 0; font-style: italic; }
+        .caption-left { right: auto; left: 0; }
+
+        .bg-typography { position: absolute; top: 100px; left: -5%; font-family: 'Playfair Display', serif; font-size: 22vw; font-weight: 700; color: rgba(0,0,0,0.03); white-space: nowrap; z-index: 0; pointer-events: none;}
+
+        /* --- 项目一：端午绘本设计 --- */
+        #project-1 { background-color: #F7F5F0; }
+        .editorial-container-1 { display: flex; align-items: flex-start; position: relative; z-index: 10; gap: 5%; max-width: 1600px; margin: 0 auto;}
+        .gallery-1 { width: 63%; display: flex; flex-direction: column; gap: 80px; }
+        .gallery-1 .img-wrapper img { aspect-ratio: 16 / 9; }
+        .gallery-1 .img-wrapper:nth-child(1) { width: 100%; }
+        .gallery-1 .img-wrapper:nth-child(2) { width: 88%; margin-left: auto; }
+        .gallery-1 .img-wrapper:nth-child(3) { width: 105%; margin-left: -5%; }
+        .gallery-1 .img-wrapper:nth-child(4) { width: 92%; margin: 0 auto; }
+
+        /* --- 项目二：天津市政府海报 --- */
+        #project-2 { background-color: #F6FAF6; border-top: 1px solid #E9F0E9;}
+        #project-2 .project-info h2 { color: #2A4B27; }
+        #project-2 .project-info h2 span { color: #F07E5B; }
+        #project-2 .bg-typography { color: rgba(75, 142, 66, 0.05); }
+        .editorial-container-2 { display: flex; align-items: flex-start; gap: 5%; max-width: 1600px; margin: 0 auto; position: relative; z-index: 10;}
+        .gallery-2 { width: 63%; display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; align-items: start; }
+        .tj-poster-1 { grid-column: 1 / 9; grid-row: 1; aspect-ratio: 16 / 9; }
+        .tj-bus { grid-column: 9 / 13; grid-row: 1 / 3; aspect-ratio: 3 / 4; margin-top: 60px;}
+        .tj-poster-2 { grid-column: 1 / 8; grid-row: 2; aspect-ratio: 16 / 9; margin-top: 40px; }
+        .tj-italy { grid-column: 1 / 6; grid-row: 3; aspect-ratio: 3 / 4; margin-top: 60px; }
+        .tj-wanda { grid-column: 6 / 13; grid-row: 3 / 5; aspect-ratio: 16 / 9; margin-top: 140px; }
+
+        /* --- 项目三：作业帮新媒体运营 --- */
+        #project-3 { background-color: #F8F9FA; border-top: 1px solid #EEE;}
+        #project-3 .bg-typography { color: rgba(0,0,0,0.02); }
+        .editorial-container-3 { display: flex; align-items: flex-start; gap: 5%; max-width: 1600px; margin: 0 auto; position: relative; z-index: 10;}
+        .gallery-3 { width: 63%; display: flex; justify-content: space-between; gap: 40px; }
+        .gallery-3 .img-wrapper { width: 48%; aspect-ratio: 1 / 2; }
+        .gallery-3 .img-wrapper img { border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+        .gallery-3 .img-wrapper:nth-child(2) { margin-top: 120px; }
+
+        /* --- 项目四：博物馆科普绘本 --- */
+        #project-4 { background-color: #FDF8F5; border-top: 1px solid #F5EAE4;}
+        #project-4 .project-info h2 { color: #4A3B32; }
+        #project-4 .project-info h2 span { color: #C0392B; }
+        #project-4 .bg-typography { color: rgba(192, 57, 43, 0.03); font-size: 20vw; left: 0;}
+        .editorial-container-4 { display: flex; align-items: flex-start; gap: 5%; max-width: 1600px; margin: 0 auto; position: relative; z-index: 10;}
+        .gallery-4 { width: 63%; display: flex; flex-direction: column; gap: 70px; }
+        .gallery-4 .img-wrapper img { aspect-ratio: 16 / 9; }
+        .gallery-4 .img-wrapper:nth-child(1) { width: 100%; }
+        .gallery-4 .img-wrapper:nth-child(2) { width: 90%; margin-left: 10%; }
+        .gallery-4 .img-wrapper:nth-child(3) { width: 95%; }
+
+        /* --- 项目五：其他作品画廊 (无长段文字，纯网格展示) --- */
+        #project-5 { background-color: #FFFFFF; padding: 100px 6% 140px; border-top: 1px solid #EEE;}
+        .gallery-header { text-align: center; margin-bottom: 80px; }
+        .gallery-header h2 { font-family: 'Noto Serif SC', serif; font-size: 2.5rem; color: #1A281A; }
+        .gallery-header h2 span { display: block; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #888; font-style: italic; margin-top: 8px;}
+        
+        .gallery-5-container { max-width: 1400px; margin: 0 auto; display: flex; gap: 30px; align-items: flex-start; }
+        
+        /* 左侧：1:2 竖版海报独占一列 */
+        .gallery-5-left { width: 35%; position: relative; }
+        .gallery-5-left .img-wrapper { aspect-ratio: 1 / 2; }
+        
+        /* 右侧：3张横图上下拼图 */
+        .gallery-5-right { width: 65%; display: flex; flex-direction: column; gap: 30px; position: relative; }
+        .g5-right-top .img-wrapper { aspect-ratio: 16 / 9; width: 100%; }
+        .g5-right-bottom { display: flex; gap: 30px; width: 100%; }
+        .g5-right-bottom .img-wrapper { width: 50%; aspect-ratio: 16 / 9; }
+
+        /* --- 简历/关于 板块 --- */
+        .about-section { padding: 100px 6% 120px; background: #F9F9F8; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; border-top: 1px solid #EBEBEB;}
+        .section-title { font-family: 'Noto Serif SC', serif; font-size: 2rem; margin-bottom: 40px; color: #1A281A; }
+        .resume-group { margin-bottom: 50px; }
+        .resume-group h3 { font-size: 18px; font-weight: 600; margin-bottom: 24px; color: #333; border-bottom: 2px solid #EBEBEB; padding-bottom: 10px;}
+        .resume-item { margin-bottom: 30px; }
+        .resume-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; color: #1A281A; }
+        .resume-item .meta { font-size: 13px; color: #888; margin-bottom: 10px; font-family: 'Playfair Display', serif;}
+        .resume-item p { font-size: 14px; color: #555; margin-bottom: 6px; }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag { padding: 6px 14px; background: #FFF; font-size: 13px; color: #2C3E2D; border-radius: 4px; border: 1px solid #DDD;}
+
+        /* 页脚 */
+        footer { padding: 80px 6%; background: #1A281A; color: #F7F5F0; text-align: center; }
+        footer h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 400; margin-bottom: 20px; }
+        footer p { color: #A4B0A4; margin-bottom: 40px; font-size: 15px; }
+        .contact-links a { margin: 0 15px; color: #F7F5F0; text-decoration: none; font-size: 16px; border-bottom: 1px solid rgba(247,245,240,0.3); padding-bottom: 4px; transition: border-color 0.3s; }
+        .contact-links a:hover { border-color: #F7F5F0; }
+        .copyright { margin-top: 60px; font-size: 12px; color: #667566; }
+
+        /* 移动端适配 */
+        @media (max-width: 900px) {
+            .editorial-container-1, .editorial-container-2, .editorial-container-3, .editorial-container-4, .about-section { flex-direction: column; grid-template-columns: 1fr; gap: 50px;}
+            .project-info, .gallery-1, .gallery-2, .gallery-3, .gallery-4 { width: 100%; }
+            .project-info { position: relative; top: 0; }
+            .bg-typography { display: none; }
+            .gallery-2 { display: flex; flex-direction: column; gap: 50px; }
+            .tj-poster-1, .tj-poster-2, .tj-bus, .tj-italy, .tj-wanda { width: 100%; margin: 0 !important; }
+            .gallery-3 { flex-direction: column; gap: 60px; }
+            .gallery-3 .img-wrapper { width: 100%; margin-top: 0 !important; }
+            .gallery-4 .img-wrapper { width: 100% !important; margin: 0 !important; }
+            
+            /* 手机端画廊改为全部单列向下排 */
+            .gallery-5-container { flex-direction: column; gap: 50px; }
+            .gallery-5-left, .gallery-5-right { width: 100%; }
+            .g5-right-bottom { flex-direction: column; gap: 50px; }
+            .g5-right-bottom .img-wrapper { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">HE JIAYUAN</div>
+        <nav>
+            <a href="#project-1">绘本</a>
+            <a href="#project-2">政务海报</a>
+            <a href="#project-3">商业宣发</a>
+            <a href="#project-4">博物馆科普</a>
+            <a href="#project-5">其他作品</a>
+            <a href="#about">简历</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>你好，我是何嘉媛。<br>专注于视觉传达、插画艺术与新媒体运营。</h1>
+        <p>熟练驾驭平面、三维与 AIGC 工具。善于将传统文化与现代视觉语言结合，同时具备“运营思维+视觉产出”的复合型落地能力。</p>
+    </section>
+
+    <!-- 项目一：端午绘本设计 -->
+    <section id="project-1" class="project-section">
+        <div class="bg-typography">DUANWU</div>
+        <div class="editorial-container-1">
+            <div class="project-info">
+                <h2>端午绘本设计
+                    <span style="color: #D35400;">Dragon Boat Festival</span>
+                </h2>
+                <p>这是一个关于主人公小糯的端午节奇幻冒险绘本。画面采用复古国风结合现代噪点肌理，将传统民俗以极具想象力的方式呈现，营造出独特的电影感与叙事张力。</p>
+            </div>
+            <div class="gallery-1">
+                <div class="img-wrapper"><img src="1.jpg" alt="竹林村庄" onerror="this.src='https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&w=1600&h=900&q=80'"></div>
+                <div class="img-wrapper"><img src="2.jpg" alt="挂香囊" onerror="this.src='https://images.unsplash.com/photo-1596404845574-88484a441e97?auto=format&fit=crop&w=1600&h=900&q=80'"></div>
+                <div class="img-wrapper"><img src="3.jpg" alt="骑虎" onerror="this.src='https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?auto=format&fit=crop&w=1600&h=900&q=80'"></div>
+                <div class="img-wrapper"><img src="4.jpg" alt="采摘" onerror="this.src='https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1600&h=900&q=80'"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目二：天津市政府公益海报 -->
+    <section id="project-2" class="project-section">
+        <div class="bg-typography">CIVIC</div>
+        <div class="editorial-container-2">
+            <div class="project-info">
+                <h2>讲文明 树新风
+                    <span>Tianjin Gov. Public Welfare</span>
+                </h2>
+                <p><strong>作为该项目负责人</strong>，我主导了此套海报的全流程设计。针对“文明养犬”等内核，采用现代明快的插画风格，让政务宣发更有城市人文温度。同时独立完成了在意大利风情区的线下展览布展设计。</p>
+            </div>
+            <div class="gallery-2">
+                <div class="img-wrapper tj-poster-1"><img src="poster-1.jpg" alt="海报1" onerror="this.src='https://images.unsplash.com/photo-1613521140785-e85e427f8002?auto=format&fit=crop&w=1200&h=675&q=80'"><span class="caption">Design 01. 公益海报主视觉</span></div>
+                <div class="img-wrapper tj-bus"><img src="bus-stop.jpg" alt="公交站" onerror="this.src='https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=900&h=1200&q=80'"><span class="caption">Landing 01. 滨海新区公交站牌</span></div>
+                <div class="img-wrapper tj-poster-2"><img src="poster-2.jpg" alt="海报2" onerror="this.src='https://images.unsplash.com/photo-1588693959600-0e4250917614?auto=format&fit=crop&w=1200&h=675&q=80'"><span class="caption">Design 02. 系列海报延展</span></div>
+                <div class="img-wrapper tj-italy"><img src="italy-exhibition.jpg" alt="意大利风情区" onerror="this.src='https://images.unsplash.com/photo-1531259524458-7510e14cb799?auto=format&fit=crop&w=900&h=1200&q=80'"><span class="caption caption-left">Landing 02. 意大利风情区布展</span></div>
+                <div class="img-wrapper tj-wanda"><img src="wanda-led.jpg" alt="万达大屏" onerror="this.src='https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1600&h=900&q=80'"><span class="caption">Landing 03. 万达广场 LED 大屏</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目三：作业帮新媒体运营 -->
+    <section id="project-3" class="project-section">
+        <div class="bg-typography">EDUTECH</div>
+        <div class="editorial-container-3">
+            <div class="project-info">
+                <h2>作业帮宣发设计
+                    <span style="color: #E74C3C;">Social Media Operations</span>
+                </h2>
+                <p>担任新媒体运营期间，不仅负责小红书和视频号内容策划，更直接操刀核心转化海报。运用运营思维设计的长图，精准击中痛点，有效提升了直播间转化率。</p>
+            </div>
+            <div class="gallery-3">
+                <div class="img-wrapper"><img src="zyb-1.jpg" alt="作业帮海报1" onerror="this.src='https://images.unsplash.com/photo-1610450949065-27a3c3e804f4?auto=format&fit=crop&w=800&h=1600&q=80'"><span class="caption caption-left">Design 01. 课程宣发长图设计</span></div>
+                <div class="img-wrapper"><img src="zyb-2.jpg" alt="作业帮海报2" onerror="this.src='https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&h=1600&q=80'"><span class="caption">Design 02. 新媒体种草视觉图</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目四：博物馆科普绘本 -->
+    <section id="project-4" class="project-section">
+        <div class="bg-typography">MUSEUM</div>
+        <div class="editorial-container-4">
+            <div class="project-info">
+                <h2>博物馆科普绘本
+                    <span>Tanshishan Culture Book</span>
+                </h2>
+                <p>以福建昙石山文化为背景的儿童科普绘本。通过主人公“小昙”的探险故事，将晦涩的考古文化进行了生动的视觉降维，实现文化资产的活化与传播。</p>
+            </div>
+            <div class="gallery-4">
+                <div class="img-wrapper"><img src="museum-1.jpg" alt="插画1" onerror="this.src='https://images.unsplash.com/photo-1599859265287-2fb0dd9dc81e?auto=format&fit=crop&w=1600&h=900&q=80'"><span class="caption">Illustration 01. 部落生活场景描绘</span></div>
+                <div class="img-wrapper"><img src="museum-2.jpg" alt="插画2" onerror="this.src='https://images.unsplash.com/photo-1518991461991-32e6fb36cbbf?auto=format&fit=crop&w=1600&h=900&q=80'"><span class="caption">Illustration 02. 带领族人探索海洋</span></div>
+                <div class="img-wrapper"><img src="museum-3.jpg" alt="插画3" onerror="this.src='https://images.unsplash.com/photo-1578307323861-125026e63286?auto=format&fit=crop&w=1600&h=900&q=80'"><span class="caption">Illustration 03. 成为酋长解决危机</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目五：其他作品画廊 (无长文字，纯视觉) -->
+    <section id="project-5">
+        <div class="gallery-header">
+            <h2>更多探索
+                <span>Selected Works & Illustrations</span>
+            </h2>
+        </div>
+        
+        <div class="gallery-5-container">
+            <!-- 左侧：安心行 1:2 竖图 -->
+            <div class="gallery-5-left">
+                <div class="img-wrapper">
+                    <!-- 请在此替换为你的【安心行】海报文件名 -->
+                    <img src="anxinxing-poster.jpg" alt="安心行APP海报" onerror="this.src='https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&w=800&h=1600&q=80'">
+                    <span class="caption caption-left">APP Poster Design. 安心行应用宣传海报</span>
+                </div>
+            </div>
+
+            <!-- 右侧：3张 16:9 插画 -->
+            <div class="gallery-5-right">
+                <!-- 右侧上部：一张大的 16:9 -->
+                <div class="g5-right-top">
+                    <div class="img-wrapper">
+                        <img src="other-illus-1.jpg" alt="其他插画1" onerror="this.src='https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1600&h=900&q=80'">
+                        <span class="caption">Original Illustration. 原创插画探索 01</span>
+                    </div>
+                </div>
+                
+                <!-- 右侧下部：并排两张小的 16:9 -->
+                <div class="g5-right-bottom">
+                    <div class="img-wrapper">
+                        <img src="other-illus-2.jpg" alt="其他插画2" onerror="this.src='https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&h=450&q=80'">
+                        <span class="caption caption-left">Illustration 02</span>
+                    </div>
+                    <div class="img-wrapper">
+                        <img src="other-illus-3.jpg" alt="其他插画3" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800&h=450&q=80'">
+                        <span class="caption">Illustration 03</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 简历区 -->
+    <section id="about" class="about-section">
+        <div>
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-group">
+                <h3>教育背景</h3>
+                <div class="resume-item" style="margin-bottom: 0;">
+                    <h4>天津外国语大学</h4>
+                    <p class="meta">2022.09 - 2026.06 | 数字媒体艺术本科</p>
+                    <p><strong>荣誉：</strong>大学生创业创新国家级项目、两岸新锐设计华灿奖二等奖。</p>
+                </div>
+            </div>
+
+            <div class="resume-group">
+                <h3>专业技能</h3>
+                <div class="skills-container">
+                    <span class="skill-tag">Photoshop</span><span class="skill-tag">Illustrator</span>
+                    <span class="skill-tag">Procreate</span><span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Cinema 4D</span><span class="skill-tag">Blender</span>
+                    <span class="skill-tag">Midjourney</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="resume-group" style="margin-top: 80px;">
+                <h3>项目与经历</h3>
+                <div class="resume-item">
+                    <h4>国家级天津市政府设计项目 — 负责人</h4>
+                    <p class="meta">2024.09 - 2025.05</p>
+                    <p>主导海报项目全流程，负责明确目标与海报风格方向，协调设计与文案团队及甲方沟通需求；独立完成线下布展设计，成果落地于天津市滨海新区、意大利风情区及万达商圈。</p>
+                </div>
+                <div class="resume-item">
+                    <h4>作业帮 — 新媒体运营 (实习)</h4>
+                    <p class="meta">2025.08 - 2025.10</p>
+                    <p>负责小红书种草内容策划与宣发海报视觉设计；参与视频号直播脚本撰写与预热执行，通过懂用户痛点的视觉产出，有效推动课程转化。</p>
+                </div>
+                <div class="resume-item">
+                    <h4>博物馆插画绘本设计 — 插画师 / 平面设计</h4>
+                    <p class="meta">2023.08 - 2024.07</p>
+                    <p>主导福建昙石山文化背景的儿童科普绘本创作，将严肃的考古及文物讲解逻辑转化为生动的视觉降维设计，独立完成核心插画创作，大幅增强了文化资产在少儿群体中的接受度。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <h2>Let's work together.</h2>
+        <p>寻找 视觉设计 / 运营策划 机会，期待与您合作。</p>
+        <div class="contact-links">
+            <a href="mailto:1534286398@qq.com">1534286398@qq.com</a>
+            <a href="tel:+8615715916842">+86 15715916842</a>
+        </div>
+        <p class="copyright">&copy; 2026 何嘉媛. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
